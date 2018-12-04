@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "Engine/World.h"
 #include "Tank.h"
 #include "TankPlayerController.generated.h"
 
@@ -27,6 +28,8 @@ public:
 
 private:
 	bool GetSightRayHitLocation(FVector& OutHitLocation) const;
+
+	bool GetLookDirection(FVector2D ScreenLocation, FVector & LookDirection) const;
 
 	UPROPERTY(EditAnywhere)
 	float CrossHairXLocation = 0.5;
