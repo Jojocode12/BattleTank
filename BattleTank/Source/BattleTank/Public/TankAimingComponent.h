@@ -8,7 +8,10 @@
 #include "Engine/Classes/Kismet/GameplayStatics.h"
 #include "TankAimingComponent.generated.h"
 
+// Forward declaration
+class UTankBarrel;
 
+// Hold barrel's property
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BATTLETANK_API UTankAimingComponent : public UActorComponent
 {
@@ -19,15 +22,13 @@ public:
 	UTankAimingComponent();
 
 protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
-	UStaticMeshComponent* Barrel = nullptr;
+public:
+	UTankBarrel* Barrel = nullptr;
 
 	void AimAt(FVector HitLocation, float LauchSpeed);
-	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
+	void SetBarrelReference(UTankBarrel* BarrelToSet);
+
+private:
+	void MoveBarrel(FVector AimDirection);
 };
